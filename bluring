@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Dec  1 16:31:48 2017
+
+@author: Jennifer Jennings
+"""
+
+
+import cv2
+import numpy as np
+
+# read in image
+pic = cv2.imread('noise.jpg')
+
+
+# bluring: kernal / matrix
+# Gaussian Blur.. 
+matrix = (7,7)
+sigma = 4  # sd along x direction (adds more effects)
+blur = cv2.GaussianBlur(pic, matrix, sigma)
+result = blur
+
+# Median Blur (smoothing images with pieces missing..)
+median_kernal = 3
+median = cv2.medianBlur(pic, median_kernal )
+result = median
+
+# Bi lateral Filter.. considers colours near the centre and how far from the centre
+
+dim_pix = 4 # select 7 pixals
+color = 100
+space = 50
+
+bilat_filter = cv2.bilateralFilter(pic, dim_pix, color, space)
+
+result = bilat_filter
+
+cv2.namedWindow('result', cv2.WINDOW_NORMAL)
+cv2.resizeWindow('result', 300,300)
+cv2.imshow('result', result )
+cv2.waitKey(0)
+cv2.destroyAllWindows()

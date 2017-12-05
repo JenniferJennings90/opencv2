@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Dec  1 16:49:36 2017
+
+@author: Jennifer Jennings
+"""
+
+
+import cv2
+import numpy as np
+
+# read in image
+pic = cv2.imread('flower.jpg')
+
+
+threshold_value1 = 50
+threshold_value2 = 100
+
+canny = cv2.Canny(pic, threshold_value1, threshold_value2)
+
+# The Canny function: similar to binary function, 
+# px below th_v1 are 0 (black)
+# px above th_v2 are 1 (white)
+# inbetween is boundary
+
+result = canny
+
+cv2.imshow('Shifted',result)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()

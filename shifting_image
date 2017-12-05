@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Dec  1 16:13:15 2017
+
+@author: Jennifer Jennings
+"""
+
+import cv2
+import numpy as np
+
+# read in image
+pic = cv2.imread('flower.jpg')
+
+# get size of image
+cols = pic.shape[1]
+rows = pic.shape[0]
+
+# translation matrix
+M =  np.float32([[1,0,150], [0,1,70]])
+# shift 150 px right & 70 px down
+
+
+
+M_rev =  np.float32([[1,0,-150], [0,1,-70]])
+pw
+
+shifted = cv2.warpAffine(pic, M_rev, (cols,rows))
+cv2.imshow('Shifted',shifted)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()

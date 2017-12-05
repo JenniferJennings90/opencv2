@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Dec  1 15:54:57 2017
+
+@author: Jennifer Jennings
+"""
+
+import numpy as np
+import cv2
+
+img = cv2.imread('flower.jpg') # Read in image
+
+img = cv2.imwrite('image_out.png', img) # output image
+
+cv2.imshow('output',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

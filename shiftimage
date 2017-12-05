@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct  4 15:19:05 2017
+
+@author: Jennifer Jennings
+"""
+
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+
+pic = cv2.imread('cat.png')
+
+
+cols = pic.shape[1]
+rows = pic.shape[0]
+
+# [1,0,150] > move 150 pixl to right 
+# [0,1,70] > 70 px down 
+
+
+right_shift = np.float32([ [1,0,400], [0,1,70] ]) # down right
+
+
+left_shift = np.float32([ [1,0,- 400], [0,1,- 170] ]) # left up
+
+
+shifted_left = cv2.warpAffine(pic,left_shift, (cols,rows))
+
+shifted_right = cv2.warpAffine(pic,right_shift, (cols,rows))
+
+
+plt.imshow(pic)
+plt.show()
+
+plt.imshow(shifted_left)
+plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
+plt.show()
+
+
+plt.imshow(shifted_right)
+plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
+plt.show()
+
+cv2.imshow('shifted', shifted)
+
+cv2.waitKeyEx()
